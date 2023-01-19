@@ -1,5 +1,3 @@
 module.exports = {
-  HOST: "localhost",
-  PORT: 27017,
-  DB: "bezkoder_db"
+  url: "mongodb+srv://game:iDGzBv8CkoBHg8gj@cluster0.lcqao5o.mongodb.net/?retryWrites=true&w=majority"
 };
