@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
 
+global.__basedir = __dirname;
 const dbConfig = require("./app/config/db.config");
 
 const app = express();
@@ -51,12 +52,15 @@ app.get("/", (req, res) => {
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
+require("./app/routes/event.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
+http = require('http').createServer(app),
+port = 80;
+
+app.get('*', function (req, res, next) { res.sendFile(__dirname + '/views/index.html'); });
+
+http.listen(port, function () { console.log('App running & listening on port ' + port); });
 
 function initial() {
   Role.estimatedDocumentCount((err, count) => {
